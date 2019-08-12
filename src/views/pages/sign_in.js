@@ -24,30 +24,31 @@ let Signin = {
 
         `;
 
-    return view;
-  },
-  after_render: async () => {
-      const formOne = document.getElementById("form-sign");
-      const select = document.getElementById("register-select");
-      const statesList = ["Elige un estado", "Aguascalientes", "Baja California", "Baja California Sur","Campeche", "Chihuahua", "Chiapas",
-                          "Ciudad de México", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", 
-                          "Jalisco", "Estado de México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
-                          "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", 
-                          "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"]           
-      const boton = document.getElementById("button-register");
+        return view;
+    },
+    after_render: async() => {
+        const formOne = document.getElementById("form-sign");
+        const select = document.getElementById("register-select");
+        const statesList = ["Elige un estado", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chihuahua", "Chiapas",
+            "Ciudad de México", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
+            "Jalisco", "Estado de México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
+            "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+            "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
+        ]
+        const boton = document.getElementById("button-register");
 
-      //For que rellena el select con los nombres de los estados.
-      for(let index=0; index<statesList.length; index ++){
-        select.options[select.options.length]=new Option(statesList[index], index);
-      }
+        //For que rellena el select con los nombres de los estados.
+        for (let index = 0; index < statesList.length; index++) {
+            select.options[select.options.length] = new Option(statesList[index], index);
+        }
 
-   
 
-    const buttonRegister = document.getElementById("button-register");
-    boton.addEventListener("click", registerUser);
-    
-    
-  }
+
+        const buttonRegister = document.getElementById("button-register");
+        boton.addEventListener("click", registerUser);
+
+
+    }
 }
 
 export default Signin;
