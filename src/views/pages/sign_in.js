@@ -1,32 +1,74 @@
 let Signin = {
     render: async() => {
         let view = /*html*/ `
-        <section title="Window-Register" class="section-register" id="section-register">
-
+<section title="Window-Register" class="section-register" id="section-register">
+    <h1 class="register-title">Registro</h1>
+    <div>
         <form id="form-sign">
-            <h1>Registro</h1>
-            <input type="text" name="name" placeholder="Nombre" id="register-name" class="register-name">
-            <input type="email" name="email" placeholder="e-mail" id="register-email" class="register-email">
-            <input type="text" name="username" placeholder="Username" id="register-username" class="register-username">
-            <input type="password" name="password" placeholder="Contraseña" id="register-password" class="register-password">
-            <input type="password" name="cpassword" placeholder="Confirmar Contraseña" id="register-cp" class="register-cp">
+            <div class="form-row">
+                <div class="  col-md-6 register-select ">
+                <input type="text " placeholder="Nombre " id="register-name " class="register"> </div>
+                <div class="col-md-6 ">
+                <input type="text " placeholder="Username " id="register-username " class="register"></div>
+            </div>
+            <div class="form-row ">
+                <div class=" col-md-6 ">
+                    <input type="text" placeholder="e-mail " id="register-email" class="register" >
+                </div>
+                <div class="col-md-6 ">
+                    <input type="password" aria-describedby="passwordHelpInline" placeholder="Contraseña " id="register-password" class="register" >
+                </div>
+                 </div>
+                <div class=" col-md-6 ">
+                    <input type="password" placeholder="Confirmar contraseña" id="register-cp" class="register" >
+                </div>
+                <div class="  col-md-6 register-select ">
+                    <input type="text " placeholder="Ciudad " class="register" id="register-city "> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class=" col-md-6 ">
+                    <input type="text " placeholder="Unidad Habitacional " class="register" id="register-uhm ">
+                </div>
+                <div>
+                    <select name="Estado" name="select-state" size="1" class="register" id="register-select">
+                    </select>                 
+                </div>
+             </div>
 
-            <select name="Estado" name="select-state" size="1" class="register-select" id="register-select">
-            </select>
-
-            <input type="text" name="city" placeholder="Ciudad" class="register-city" id="register-city">
-            <input type="text" name="uhm" placeholder="Unidad Habitacional" class="register-uhm" id="register-uhm">
-            <input type="button" name="btn-register" value="RegistrarMe" id="button-register" class="button-register">
         </form>
+    </div>
+<input type="button" name="btn-register" value="RegistrarMe" id="button-register" class="button-register">
 
-
-    </section>
+</section>
 
         `;
 
         return view;
     },
     after_render: async() => {
+
+
+        const boton = document.getElementById("button-register");
+        boton.addEventListener("click", registerUser);
+
+        document.getElementById("button-register").addEventListener("click", () => {
+            let email = document.getElementById("register-email");
+            let pass = document.getElementById("register-password");
+            let repeatPass = document.getElementById("register-cp");
+            if (pass.value != repeatPass.value) {
+                alert(`The passwords dont match`);
+            } else if (
+                (email.value == "") |
+                (pass.value == "") |
+                (repeatPass == "")
+            ) {
+                alert(`The fields cannot be empty`);
+            } else {
+                alert(`User with email ${email.value} was successfully submitted!`);
+            }
+        });
+
         const formOne = document.getElementById("form-sign");
         const select = document.getElementById("register-select");
         const statesList = ["Elige un estado", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chihuahua", "Chiapas",
@@ -35,20 +77,13 @@ let Signin = {
             "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
             "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
         ]
-        const boton = document.getElementById("button-register");
+
 
         //For que rellena el select con los nombres de los estados.
         for (let index = 0; index < statesList.length; index++) {
             select.options[select.options.length] = new Option(statesList[index], index);
         }
-
-
-
-        const buttonRegister = document.getElementById("button-register");
-        boton.addEventListener("click", registerUser);
-
-
     }
-}
+};
 
 export default Signin;

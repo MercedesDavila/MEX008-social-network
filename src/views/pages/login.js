@@ -31,11 +31,13 @@ let Login = {
         // const closeButton = document.getElementById("close");
         const btnGmail = document.getElementById("btn-gmail");
         const btnFacebook = document.getElementById("btn-facebook");
+        const boton = document.getElementById("login-count");
         // loginButton.addEventListener("click", goinglogin);
         // registerButton.addEventListener("click", goingregister);
         // closeButton.addEventListener("click", closelogin);
         btnGmail.addEventListener("click", registerGmail);
         btnFacebook.addEventListener("click", signInFacebook);
+        boton.addEventListener("click", loginS);
     }
 };
 
