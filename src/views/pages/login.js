@@ -3,11 +3,9 @@ let Login = {
         let view = /*html*/ `
         <section class="login" id="login">
         <div class="login-body">
-
             <div class="info-user">
                 <input type="button" class="fb-button"  id="btn-facebook" value="Iniciar sesión con Facebook">   
                 <input type="button" id="btn-gmail" class="google-button" value="Iniciar sesión con Google">
-
                 <input type="text" name="email" id="name-login" placeholder="Correo">
                 <form class="form-inline">
                     <div class="form-group">
@@ -17,7 +15,6 @@ let Login = {
                       </small>
                     </div>
                 </form>
-
                 <input type="button" id="login-count" class="enter-button" value="Iniciar">
             </div>
         </div>
@@ -32,21 +29,13 @@ let Login = {
         // const loginButton = document.getElementById("login-button");
         // const registerButton = document.getElementById("register-button");
         // const closeButton = document.getElementById("close");
-        const loginSession = document.getElementById("login-count");
         const btnGmail = document.getElementById("btn-gmail");
         const btnFacebook = document.getElementById("btn-facebook");
         // loginButton.addEventListener("click", goinglogin);
         // registerButton.addEventListener("click", goingregister);
         // closeButton.addEventListener("click", closelogin);
-        loginSession.addEventListener("click", loginS);
         btnGmail.addEventListener("click", registerGmail);
         btnFacebook.addEventListener("click", signInFacebook);
-      
-    const boton = document.getElementById("enter-button");
-
-    boton.addEventListener("click", loginS);
-
-
     }
 };
 
