@@ -47,16 +47,16 @@ const router = async() => {
     let request = Utils.parseRequestURL();
 
 
-  // Analiza la URL y si tiene una parte de id, cámbiala con la cadena ": id"
-  let parsedURL =
-    (request.resource ? "/" + request.resource : "/") +
-    (request.id ? "/:id" : "") +
-    (request.verb ? "/" + request.verb : "");
-  // console.log("PARSED", parsedURL);
-  // Obtenga la página de nuestro hash de rutas compatibles.
-  let page = routes[parsedURL] ? routes[parsedURL] : Error404;
-  main.innerHTML = await page.render();
-  await page.after_render();  
+    // Analiza la URL y si tiene una parte de id, cámbiala con la cadena ": id"
+    let parsedURL =
+        (request.resource ? "/" + request.resource : "/") +
+        (request.id ? "/:id" : "") +
+        (request.verb ? "/" + request.verb : "");
+    // console.log("PARSED", parsedURL);
+    // Obtenga la página de nuestro hash de rutas compatibles.
+    let page = routes[parsedURL] ? routes[parsedURL] : Error404;
+    main.innerHTML = await page.render();
+    await page.after_render();
 
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let Login = {
     render: async() => {
         let view = /*html*/ `
@@ -6,10 +7,10 @@ let Login = {
             <div class="info-user">
                 <input type="button" class="fb-button"  id="btn-facebook" value="Iniciar sesión con Facebook">   
                 <input type="button" id="btn-gmail" class="google-button" value="Iniciar sesión con Google">
-                <input type="text" name="email" id="name-login" placeholder="Correo">
+                <input type="text" name="email" id="email-login" placeholder="Correo">
                 <form class="form-inline">
                     <div class="form-group">
-                        <input type="password" id="pass-login" aria-describedby="passwordHelpInline" placeholder="Contraseña">
+                        <input type="password" id="password-login" aria-describedby="passwordHelpInline" placeholder="Contraseña">
                         <small id="passwordHelpInline" class="text-muted">
                        <p aling="cemter">Must be 8-20 characters long.</p> 
                       </small>
@@ -31,13 +32,13 @@ let Login = {
         // const closeButton = document.getElementById("close");
         const btnGmail = document.getElementById("btn-gmail");
         const btnFacebook = document.getElementById("btn-facebook");
-        const boton = document.getElementById("login-count");
+        const buttonS = document.getElementById("login-count");
         // loginButton.addEventListener("click", goinglogin);
         // registerButton.addEventListener("click", goingregister);
         // closeButton.addEventListener("click", closelogin);
         btnGmail.addEventListener("click", registerGmail);
         btnFacebook.addEventListener("click", signInFacebook);
-        boton.addEventListener("click", loginS);
+        buttonS.addEventListener("click", loginS);
     }
 };
 

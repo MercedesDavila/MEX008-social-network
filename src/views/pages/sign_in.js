@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 let Signin = {
     render: async() => {
         let view = /*html*/ `
@@ -47,28 +49,6 @@ let Signin = {
         return view;
     },
     after_render: async() => {
-
-
-        const boton = document.getElementById("button-register");
-        boton.addEventListener("click", registerUser);
-
-        document.getElementById("button-register").addEventListener("click", () => {
-            let email = document.getElementById("register-email");
-            let pass = document.getElementById("register-password");
-            let repeatPass = document.getElementById("register-cp");
-            if (pass.value != repeatPass.value) {
-                alert(`The passwords dont match`);
-            } else if (
-                (email.value == "") |
-                (pass.value == "") |
-                (repeatPass == "")
-            ) {
-                alert(`The fields cannot be empty`);
-            } else {
-                alert(`User with email ${email.value} was successfully submitted!`);
-            }
-        });
-
         const formOne = document.getElementById("form-sign");
         const select = document.getElementById("register-select");
         const statesList = ["Elige un estado", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chihuahua", "Chiapas",
@@ -76,13 +56,14 @@ let Signin = {
             "Jalisco", "Estado de México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
             "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
             "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
-        ]
-
+        ];
+        const boton = document.getElementById("button-register");
 
         //For que rellena el select con los nombres de los estados.
         for (let index = 0; index < statesList.length; index++) {
             select.options[select.options.length] = new Option(statesList[index], index);
         }
+        boton.addEventListener("click", registerUser);
     }
 };
 

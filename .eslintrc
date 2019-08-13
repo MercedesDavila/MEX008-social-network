@@ -7,7 +7,7 @@
     "mocha": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2017,
     "sourceType": "module"
   
   },
@@ -26,5 +26,6 @@
   "rules": {
     "no-console": 0,
     "semi": 2,
+    "arrow-parens": 2
   }
 }

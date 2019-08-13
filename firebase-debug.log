@@ -1,0 +1,74 @@
+[debug] [2019-08-12T18:54:29.439Z] ----------------------------------------------------------------------
+[debug] [2019-08-12T18:54:29.440Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
+[debug] [2019-08-12T18:54:29.440Z] CLI Version:   7.2.2
+[debug] [2019-08-12T18:54:29.440Z] Platform:      linux
+[debug] [2019-08-12T18:54:29.440Z] Node Version:  v8.10.0
+[debug] [2019-08-12T18:54:29.440Z] Time:          Mon Aug 12 2019 13:54:29 GMT-0500 (CDT)
+[debug] [2019-08-12T18:54:29.440Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-12T18:54:29.444Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-12T18:54:29.444Z] > authorizing via signed-in user
+[debug] [2019-08-12T18:54:29.444Z] [iam] checking project supporteme-147ea for permissions ["firebase.projects.get"]
+[debug] [2019-08-12T18:54:29.446Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/supporteme-147ea:testIamPermissions  
+
+[debug] [2019-08-12T18:54:29.746Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-12T18:54:29.753Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea  
+ 
+[debug] [2019-08-12T18:54:30.330Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network'...
+[info] 
+[debug] [2019-08-12T18:54:30.345Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea/webApps/-/config  
+ 
+[info] ✔  functions: Using node@8 from host.
+[debug] [2019-08-12T18:54:30.365Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea/adminSdkConfig  
+ 
+[debug] [2019-08-12T18:54:30.608Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-12T18:54:30.665Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port...
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5005
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions" for Cloud Functions...
+[debug] [2019-08-12T18:54:31.765Z] [runtime-status] Functions runtime initialized. {"cwd":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions","node_version":"8.10.0"}
+[debug] [2019-08-12T18:54:31.765Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-08-12T18:54:31.766Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.3.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2019-08-12T18:54:31.766Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-08-12T18:54:31.767Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-08-12T19:14:46.968Z] ----------------------------------------------------------------------
+[debug] [2019-08-12T19:14:46.969Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
+[debug] [2019-08-12T19:14:46.970Z] CLI Version:   7.2.2
+[debug] [2019-08-12T19:14:46.970Z] Platform:      linux
+[debug] [2019-08-12T19:14:46.970Z] Node Version:  v8.10.0
+[debug] [2019-08-12T19:14:46.970Z] Time:          Mon Aug 12 2019 14:14:46 GMT-0500 (CDT)
+[debug] [2019-08-12T19:14:46.970Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-12T19:14:46.974Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-12T19:14:46.974Z] > authorizing via signed-in user
+[debug] [2019-08-12T19:14:46.974Z] [iam] checking project supporteme-147ea for permissions ["firebase.projects.get"]
+[debug] [2019-08-12T19:14:46.975Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/supporteme-147ea:testIamPermissions  
+
+[debug] [2019-08-12T19:14:47.274Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-12T19:14:47.280Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea  
+ 
+[debug] [2019-08-12T19:14:47.601Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network'...
+[info] 
+[debug] [2019-08-12T19:14:47.608Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea/webApps/-/config  
+ 
+[info] ✔  functions: Using node@8 from host.
+[debug] [2019-08-12T19:14:47.617Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/supporteme-147ea/adminSdkConfig  
+ 
+[debug] [2019-08-12T19:14:47.863Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-12T19:14:47.912Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port...
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5005
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions" for Cloud Functions...
+[debug] [2019-08-12T19:14:48.605Z] [runtime-status] Functions runtime initialized. {"cwd":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions","node_version":"8.10.0"}
+[debug] [2019-08-12T19:14:48.605Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-08-12T19:14:48.606Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.3.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2019-08-12T19:14:48.606Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2019-08-12T19:14:48.607Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"/home/daynizyvc/Escritorio/laboratoria/MEX008-social-network/functions/node_modules/firebase-functions/lib/index.js"}
