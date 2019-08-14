@@ -26,16 +26,11 @@ let Login = {
     // Esta es una llamada separada, ya que solo se pueden registrar después de pintar el DOM
     // Todo el código relacionado con las interacciones DOM y los controles entran aquí.
     after_render: async() => {
-        // aqui exportaras las funciones que necesites
-        // const loginButton = document.getElementById("login-button");
-        // const registerButton = document.getElementById("register-button");
-        // const closeButton = document.getElementById("close");
+
         const btnGmail = document.getElementById("btn-gmail");
         const btnFacebook = document.getElementById("btn-facebook");
         const buttonS = document.getElementById("login-count");
-        // loginButton.addEventListener("click", goinglogin);
-        // registerButton.addEventListener("click", goingregister);
-        // closeButton.addEventListener("click", closelogin);
+
         btnGmail.addEventListener("click", registerGmail);
         btnFacebook.addEventListener("click", signInFacebook);
         buttonS.addEventListener("click", loginS);

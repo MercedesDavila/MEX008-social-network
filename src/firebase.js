@@ -14,63 +14,6 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//Autenticarse con g-mail
-
-// const btnGmail = document.getElementById("btn-gmail");
-
-const registerGmail = () => {
-
-    //crea una instancia del objeto del proveedor de Google
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    //Autentica a traves de una ventana emergente
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ... 
-        console.log('Hola GMail');
-    }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-
-        console.log("token");
-    });
-};
-
-// btnGmail.addEventListener("click", registerGmail);
-
-//Autentificación con Facebook
-const signInFacebook = () => {
-
-    const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-        .then(function(result) {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            const token = result.credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // ... 
-            console.log('Hola Facebook');
-        }).then(() => goingHome())
-        .catch(function(error) {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            const credential = error.credential;
-            // ...
-        });
-};
 //************************************** */Registro del usuario****************************************************************************************
 const registerUser = () => {
     const formOne = document.getElementById("form-sign");
@@ -128,6 +71,23 @@ const observador = () => {
 };
 observador();
 
+//****************************************************Manda un e-mail de verificación al correo del usuario para que verifique su correo y pueda ingresar a la app***************
+
+//Función que manda el email de verificación al correo electrónico del usuario.
+const sendEmailVerification = () => {
+    // [START sendemailverification]
+    const user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(function() {
+        // Email Verification sent!
+        // [START_EXCLUDE]
+        alert('Enviando correo');
+        // [END_EXCLUDE]
+        // [END sendemailverification]
+    }).catch(function(error) {
+        console.log(error);
+    });
+};
+
 //*********************************************Inicio de sesión************************************************
 //Ingreso de usuario
 const loginS = () => {
@@ -147,19 +107,72 @@ const loginS = () => {
     console.log("Bienvenido a supportMe");
 };
 
-//****************************************************Manda un e-mail de verificación al correo del usuario para que verifique su correo y pueda ingresar a la app***************
+//Autenticarse con g-mail
 
-//Función que manda el email de verificación al correo electrónico del usuario.
-const sendEmailVerification = () => {
-    // [START sendemailverification]
-    const user = firebase.auth().currentUser;
-    user.sendEmailVerification().then(function() {
-        // Email Verification sent!
-        // [START_EXCLUDE]
-        alert('Enviando correo');
-        // [END_EXCLUDE]
-        // [END sendemailverification]
+// const btnGmail = document.getElementById("btn-gmail");
+
+const registerGmail = () => {
+
+    //crea una instancia del objeto del proveedor de Google
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    //Autentica a traves de una ventana emergente
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ... 
+        console.log('Hola GMail');
     }).catch(function(error) {
-        console.log(error);
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+
+        console.log("token");
     });
+};
+
+// btnGmail.addEventListener("click", registerGmail);
+
+//Autentificación con Facebook
+const signInFacebook = () => {
+
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ... 
+            console.log('Hola Facebook');
+        }).then(() => goingHome())
+        .catch(function(error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+        });
+};
+
+//Cerrar sesión 
+
+const closeSesion = () => {
+    firebase.auth().signOut()
+        .then(function() {
+            console.log('Saliendo...');
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 };
