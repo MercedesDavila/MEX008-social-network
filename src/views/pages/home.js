@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //  Se define la raíz de la data
 
 let getPostsList = async() => {

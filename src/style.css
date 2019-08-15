@@ -1,11 +1,10 @@
-*:before,
-*:after {
-    box-sizing: inherit;
+.selector-for-some-widget {
+    box-sizing: content-box;
 }
 
 body {
-    background-color: #ECBCB1;
-    font-family: 'Roboto', sans-serif;
+    background-color: #ecbcb1;
+    font-family: "Roboto", sans-serif;
 }
 
 figure {
@@ -38,7 +37,7 @@ figure {
     align-items: center;
     width: 90%;
     height: auto;
-    background-color: #CAC8CA;
+    background-color: #cac8ca;
     margin: 2rem auto;
     border-radius: 15px;
 }
@@ -118,8 +117,9 @@ figure {
     background-color: #ffffff;
 }
 
-.hide {
-    display: none;
+.enter-button:hover {
+    color: #faca6d;
+    background-color: #ffffff;
 }
 
 .info-user {
@@ -165,12 +165,6 @@ figure {
     margin-top: 10px;
 }
 
-#close:hover {
-    transform: scale(1.5);
-    font-size: 12px;
-    border-radius: 20px;
-}
-
 .web {
     display: hide;
 }
@@ -207,6 +201,11 @@ figure {
     }
     .description {
         display: hide;
+    }
+    .section-register {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        align-content: center;
     }
 }
 
