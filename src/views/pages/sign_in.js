@@ -15,14 +15,14 @@ let Signin = {
             </div>
             <div class="form-row ">
                 <div class=" col-md-6 ">
-                    <input type="text" placeholder="e-mail " id="register-email" class="register" >
+                    <input type="text" placeholder="e-mail " id="email" class="register" value="email">
                 </div>
                 <div class="col-md-6 ">
-                    <input type="password" aria-describedby="passwordHelpInline" placeholder="Contraseña " id="register-password" class="register" >
+                    <input type="password" aria-describedby="passwordHelpInline" placeholder="Contraseña " id="password" class="register" >
                 </div>
                  </div>
                 <div class=" col-md-6 ">
-                    <input type="password" placeholder="Confirmar contraseña" id="register-cp" class="register" >
+                    <input type="password" placeholder="Confirmar contraseña" id="cpassword" class="register" >
                 </div>
                 <div class="  col-md-6 register-select ">
                     <input type="text " placeholder="Ciudad " class="register" id="register-city "> 
@@ -57,13 +57,17 @@ let Signin = {
             "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
             "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
         ];
-        const boton = document.getElementById("button-register");
 
         //For que rellena el select con los nombres de los estados.
         for (let index = 0; index < statesList.length; index++) {
             select.options[select.options.length] = new Option(statesList[index], index);
         }
+        const boton = document.getElementById("button-register");
+
         boton.addEventListener("click", registerUser);
+
+
+
     }
 };
 
