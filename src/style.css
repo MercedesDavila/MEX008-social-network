@@ -131,7 +131,9 @@ figure {
     margin-top: 10%;
 }
 
-.info-user input {
+.info-user input,
+.email-login,
+.password-login {
     -webkit-box-shadow: 9px 2px 17px 1px rgba(58, 51, 53, 0.13);
     -moz-box-shadow: 9px 2px 17px 1px rgba(58, 51, 53, 0.13);
     box-shadow: 9px 2px 17px 1px rgba(58, 51, 53, 0.13);

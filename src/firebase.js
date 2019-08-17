@@ -3,16 +3,17 @@
 
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBHUStouS-ebrZIAVA8rpkCHPTqpIi5k40",
-    authDomain: "supporteme-147ea.firebaseapp.com",
-    databaseURL: "https://supporteme-147ea.firebaseio.com",
-    projectId: "supporteme-147ea",
-    storageBucket: "supporteme-147ea.appspot.com",
-    messagingSenderId: "1007267288966",
-    appId: "1:1007267288966:web:ab035c27ed063a27"
+    apiKey: "AIzaSyDGhmuAIAHIH_sHref9YI0QiXhAhkc1OpU",
+    authDomain: "supportme-565d4.firebaseapp.com",
+    databaseURL: "https://supportme-565d4.firebaseio.com",
+    projectId: "supportme-565d4",
+    storageBucket: "supportme-565d4.appspot.com",
+    messagingSenderId: "811873389744",
+    appId: "1:811873389744:web:7c5179900d830cfa"
 };
-// Initialize Firebase
+//Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+// var db = firebase.firestore();
 
 //************************************** */Registro del usuario****************************************************************************************
 const registerUser = () => {
@@ -21,14 +22,14 @@ const registerUser = () => {
     const eMail = formOne.email.value;
     const password = formOne.password.value;
     const confirmPassword = formOne.cpassword.value;
-
+    console.log("");
     //Usamos la función de firebase para crear un usuario con contraseña y verificamos que su contraseña y su confirmación coincidan para poder registrarlo.
     if (password === confirmPassword) {
         firebase.auth().createUserWithEmailAndPassword(eMail, password)
             .then(function() {
                 console.log("Se ha enviado un e-mail a tu correo");
                 sendEmailVerification();
-            })
+            }).then(() => goProfile())
             .catch(function(error) {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -152,7 +153,7 @@ const signInFacebook = () => {
             const user = result.user;
             // ... 
             console.log('Hola Facebook');
-        }).then(() => goingHome())
+        }).then(() => goingProfile())
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -176,3 +177,28 @@ const closeSesion = () => {
             console.log(error);
         });
 };
+
+//Home function
+const goingHome = () => {
+    location.hash = '/home';
+};
+
+//Going to profile function
+const goingProfile = () => {
+    location.hash = '/profile';
+};
+
+// const goingLogin = () => {
+//     location.hash = '/';
+// };
+
+// firebase.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//         // User is signed in.
+//         goingHome();
+//     } else {
+//         // No user is signed in.
+//         console.log('usuario no conectado');
+//         goingLogin();
+//     }
+// });

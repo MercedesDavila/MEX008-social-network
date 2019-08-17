@@ -53,10 +53,39 @@ const router = async() => {
         (request.id ? "/:id" : "") +
         (request.verb ? "/" + request.verb : "");
     // console.log("PARSED", parsedURL);
+
+    if (parsedURL === '/') {
+        header.style.display = 'none';
+    } else if (parsedURL === '/login') {
+        header.style.display = 'none';
+    } else if (parsedURL === '/register') {
+        header.style.display = 'none';
+    } else {
+        header.style.display = 'block';
+
+    }
+
+
+    header.innerHTML = await Navbar.render();
+    await Navbar.after_render();
     // Obtenga la página de nuestro hash de rutas compatibles.
     let page = routes[parsedURL] ? routes[parsedURL] : Error404;
     main.innerHTML = await page.render();
     await page.after_render();
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            const userInfo = user;
+            console.log(userInfo);
+            return userInfo;
+        } else {
+            // No user is signed in.
+            console.log('usuario no conectado');
+            // eslint-disable-next-line no-undef
+            // goingLogin();
+        }
+    });
 
 };
 
