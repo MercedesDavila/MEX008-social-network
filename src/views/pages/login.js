@@ -2,35 +2,46 @@
 let Login = {
     render: async() => {
         let view = /*html*/ `
-        <section class="login" id="login">
-        <div class="login-body">
-            <div class="info-user">
-                <input type="button" class="fb-button"  id="btn-facebook" value="Iniciar sesión con Facebook">   
-                <input type="button" id="btn-gmail" class="google-button" value="Iniciar sesión con Google">
-                <input type="text" name="email" id="email-login" placeholder="Correo">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input type="password" id="password-login" aria-describedby="passwordHelpInline" placeholder="Contraseña">
-                        <small id="passwordHelpInline" class="text-muted">
-                       <p aling="cemter">Must be 8-20 characters long.</p> 
-                      </small>
-                    </div>
-                </form>
-                <input type="button" id="login-count" class="enter-button" value="Iniciar">
-            </div>
-        </div>
-    </section>
+    <section class="login-section" id="login">
+        <a href=""><img class="return" src="./img/icon-06.png" alt="Ir atrás"></a>
+        <div class="login-elements">
+        <h2>Iniciar sesión</h2>
+        <button id="btn-gmail" class="sn-btn google-btn"><img src="./img/gmail-07.png" alt="Iniciar sesión con Gmail"> Iniciar sesión con Gmail</button>
+        <button id="btn-facebook" class="sn-btn facebook-btn" ><img src="./img/icon-05.png" alt="Iniciar sesión con Facebook"> Iniciar sesión con Facebook</button>
+        
+        <form name="login" id="authentication-form">
+        <input
+            type="email"
+            id="email-login"
+            placeholder="e-mail"
+            class="form-email"
+          />
+       <input
+          type="password"
+          id="password-login"
+          placeholder="contraseña"
+          class="form-password"
+        />
+        <button id="login-count" class="btn-blue">Iniciar sesión</button>
+      </form>
+      </div>
+      </section>
 `;
         return view;
     },
     // Esta es una llamada separada, ya que solo se pueden registrar después de pintar el DOM
     // Todo el código relacionado con las interacciones DOM y los controles entran aquí.
     after_render: async() => {
-
+        // aqui exportaras las funciones que necesites
+        // const loginButton = document.getElementById("login-button");
+        // const registerButton = document.getElementById("register-button");
+        // const closeButton = document.getElementById("close");
         const btnGmail = document.getElementById("btn-gmail");
         const btnFacebook = document.getElementById("btn-facebook");
         const buttonS = document.getElementById("login-count");
-
+        // loginButton.addEventListener("click", goinglogin);
+        // registerButton.addEventListener("click", goingregister);
+        // closeButton.addEventListener("click", closelogin);
         btnGmail.addEventListener("click", registerGmail);
         btnFacebook.addEventListener("click", signInFacebook);
         buttonS.addEventListener("click", loginS);
