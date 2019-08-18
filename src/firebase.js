@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-
 var firebaseConfig = {
     apiKey: "AIzaSyDGhmuAIAHIH_sHref9YI0QiXhAhkc1OpU",
     authDomain: "supportme-565d4.firebaseapp.com",
