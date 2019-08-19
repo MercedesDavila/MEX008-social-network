@@ -187,7 +187,7 @@ const closeSesion = () => {
 
 //Home function
 const goingHome = () => {
-    location.hash = '/home';
+    location.hash = '/';
 };
 
 //Going to profile function

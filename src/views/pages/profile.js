@@ -197,6 +197,24 @@ let Profile = {
 `;
         document.getElementById("btn-share").addEventListener("click", () => {
             printNewPost(formNewPost);
+            //YAEL
+            const btnPost = document.getElementById("add-n-post");
+
+
+            btnPost.addEventListener("click", () => {
+                console.log("Hola Mundo");
+                const paintComment = document.getElementById("container-post");
+                const formAddPost = document.getElementById("form-newpost");
+                const typeA = formAddPost.option.value;
+                const nameA = formAddPost.nameCompany.value;
+                const commentA = formAddPost.textarea.value;
+                const adressA = formAddPost.adressCompany.value;
+                const telephoneA = formAddPost.telephone.value;
+                const mobileA = formAddPost.mobile.value;
+                const star = formAddPost.numberstar;
+                window.postUser(typeA, nameA, commentA, adressA, telephoneA, mobileA, star);
+                window.showDate(paintComment);
+            });
         });
 
         // Imprimir modal contacto
@@ -245,6 +263,8 @@ let Profile = {
             .addEventListener("click", () => {
                 printModalContact(contactData);
             });
+        //YAEL
+
     }
 };
 export default Profile;
