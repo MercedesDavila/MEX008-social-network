@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 let Timeline = {
-  render: async () => {
-    let view = /*html*/ `
+    render: async() => {
+        let view = /*html*/ `
       <section id="" class="timeline">
       <div class="box">
               <div class="container-1">
@@ -34,10 +35,40 @@ let Timeline = {
             </div>
             </div>
 
+            <div class="container-post" id="post">
+            <div class="likes-section">
+             <p id="number-likes">27</p>
+               <button class="n-like-btn" id="n-like">
+                   <img src="./img/like-04.png" alt="dar me gusta" />
+                 </button>
+               <button class="like-btn" id="w-like">
+                 <img src="./img/like-03.png" alt="me gusta" />
+               </button>
+             </div>
+               <div class="text-post">
+               <h2>Alejandra Lopez</h2>
+               <p class="recommendation">Recomendación</p>
+               <p class="type-company">Restaurante</p>
+               <h3 class="company">Hamburguesas al carbón</h3>
+               <p class="commentary">
+                 Muy ricas hamburguesas, aunque un poco caras.
+               </p>
+               <a href="" class="contact">Contacto</a>
+               <figure class="stars">
+                 <img src="./img/iconos.png" alt="Calificación 4 Estrellas " />
+               </figure>
+             </div>
+             </div>
+ 
+
       </section>
         `;
-    return view;
-  },
-  after_render: async () => {}
+        return view;
+    },
+    after_render: async() => {
+
+        const likebutton = document.getElementById("w-like");
+        likebutton.addEventListener("click", likes);
+    }
 };
 export default Timeline;

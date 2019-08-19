@@ -69,6 +69,17 @@ const router = async() => {
     let page = routes[parsedURL] ? routes[parsedURL] : Error404;
     main.innerHTML = await page.render();
     await page.after_render();
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+        } else {
+            // No user is signed in.
+            console.log('usuario no conectado');
+            window.goingLogin();
+        }
+    });
+
 };
 
 // Escucha el cambio de hash

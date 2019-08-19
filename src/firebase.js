@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 var firebaseConfig = {
     apiKey: "AIzaSyDGhmuAIAHIH_sHref9YI0QiXhAhkc1OpU",
     authDomain: "supportme-565d4.firebaseapp.com",
@@ -9,7 +11,44 @@ var firebaseConfig = {
 };
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// var db = firebase.firestore();
+var db = firebase.firestore();
+// let user = firebase.auth().currentUser;
+// const docref = firestore.doc("newPost/6oQBzaX3J4DdHh5GyK07");
+
+function newPost() {
+    let nameCompany = document.getElementById("nameCompanyPerson").value;
+    let comment = document.getElementById("newComment").value;
+    let adress = document.getElementById("adressCompany").value;
+    let telephone = document.getElementById("telephoneCompany").value;
+    let stars = document.getElementById("ratingStars").value;
+    let typeRecommend = document.getElementById("input-recommend").value;
+
+    db.collection("newPost").add({
+            name: nameCompany,
+            comment: comment,
+            telephone: telephone,
+            adress: adress,
+            stars: stars,
+            type: typeRecommend
+
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+            document.getElementById("nameCompanyPerson").value = '';
+            document.getElementById("newComment").value = '';
+            document.getElementById("adressCompany").value = '';
+            document.getElementById("telephoneCompany").value = '';
+            document.getElementById("ratingStars").value = '';
+            document.getElementById("input-recommend").value = '';
+
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+}
+
+
+
 
 //************************************** */Registro del usuario****************************************************************************************
 const registerUser = () => {
@@ -37,6 +76,8 @@ const registerUser = () => {
     } else {
         alert("La confirmación de contraseña no coincide");
     }
+
+
 };
 
 //**********************Función que ve si el usuario esta activo o no **************************************
@@ -93,6 +134,7 @@ const loginS = () => {
     const passwordA = document.getElementById("password-login").value;
 
     firebase.auth().signInWithEmailAndPassword(eMailA, passwordA)
+        .then(() => goingProfile())
         .catch(function(error) {
             // Handle Errors here.
             const errorCode = error.code;
@@ -104,61 +146,6 @@ const loginS = () => {
     console.log("Bienvenido a supportMe");
 };
 
-
-
-//Autenticarse con g-mail
-// const btnGmail = document.getElementById("btn-gmail");
-const registerGmail = () => {
-    //crea una instancia del objeto del proveedor de Google
-    const provider = new firebase.auth.GoogleAuthProvider();
-    //Autentica a traves de una ventana emergente
-    firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
-            console.log("Hola GMail");
-        })
-        .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-            console.log("token");
-        });
-};
-// btnGmail.addEventListener("click", registerGmail);
-//Autentificación con Facebook
-const signInFacebook = () => {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-        .then(function(result) {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            const token = result.credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // ... 
-            console.log('Hola Facebook');
-        }).then(() => goingProfile())
-        .catch(function(error) {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            const credential = error.credential;
-            // ...
-        });
-};
 
 //Cerrar sesión 
 
@@ -182,6 +169,82 @@ const goingProfile = () => {
     location.hash = '/profile';
 };
 
+
+//Autenticarse con g-mail
+const registerGmail = () => {
+    //crea una instancia del objeto del proveedor de Google
+    const provider = new firebase.auth.GoogleAuthProvider();
+    //Autentica a traves de una ventana emergente
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+            console.log("Hola GMail");
+        }).then(() => goingProfile())
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            console.log("token");
+        });
+};
+
+//Autentificación con Facebook
+const signInFacebook = () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ... 
+            console.log('Hola Facebook');
+        }).then(() => goingProfile())
+        .catch(function(error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+        });
+};
+
+
+
+//Saving user data
+
+const savingUserData = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            db.collection("userDate").add({
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    userID: user.uid
+
+                })
+                .then((docRef) => {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+        }
+    });
+};
+
+
+
 // const goingLogin = () => {
 //     location.hash = '/';
 // };
@@ -196,3 +259,71 @@ const goingProfile = () => {
 //         goingLogin();
 //     }
 // });
+
+//Funcion para postear
+const post = () => {
+    let posts = document.querySelector('.post').value;
+    let user = firebase.auth().currentUser;
+    let like = 0;
+    db.collection('newPost')
+        .add({
+            displayName: user.displayName,
+            displaytelephoneCompany: user.telephoneCompany,
+            like: like,
+            displayNewComment: user.newComment
+        })
+        .then(function(docRef) {
+            console.log('Document written with ID: ', docRef.id);
+            document.querySelector('.post').value = '';
+        })
+        .catch(function(error) {
+            console.error('Error adding document: ', error);
+        });
+};
+
+
+// Likes
+
+// const likes = (id, likes) => {
+//     likes++;
+
+//     likes = parseInt(likes);
+//     let washingtonRef = db.collection('newPost').doc(id);
+
+//     return washingtonRef
+//         .update({
+//             like: likes,
+//         })
+//         .then(function() {
+//             let washingtonRef = db.collection('newPost').doc(id).id;
+
+//             let buttonLike = document.getElementById(washingtonRef);
+//             buttonLike.innerHTML += ' ' + likes;
+//         })
+//         .then(function() {
+//             console.log('Document successfully updated!');
+//         })
+//         .catch(function(error) {
+//             // The document probably doesn't exist.
+//             console.error('Error updating document: ', error);
+//         });
+// };
+// console.log(likes());
+
+// // //DeletePost
+
+// const deletePost = () => {
+//     let confirmDelete = confirm('Seguro que quieres eliminar este post?');
+//     if (confirmDelete == true) {
+//         db.collection('newPost').doc(id).delete()
+//             .then(function() {
+//                 console.log('Document successfully deleted!');
+//             })
+//             .catch(function(error) {
+//                 console.error('Error removing document: ', error);
+//             });
+//     }
+// };
+
+
+// window.goingLogin = goingLogin;

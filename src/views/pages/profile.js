@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-prototype-builtins */
 let Profile = {
     render: async() => {
         let view = /*html*/ `
@@ -25,7 +28,7 @@ let Profile = {
 
     <button class="btn-share" id="btn-share">Compártenos tu recomendación/queja</button>
 
-    <div class="container-post" id="">
+    <div class="container-post" id="container">
           <button class="delete-btn" id="show-modal-delete">
             <img src="./img/delete.png" alt="eliminar" />
           </button>
@@ -43,11 +46,39 @@ let Profile = {
           </figure>
         </div>
         </div>
+        
       </section>
       `;
         return view;
     },
     after_render: async() => {
+
+
+        const savingPost = (title, date, time, description, priority) => {
+            db.collection('newPost').add({
+                    userID: user.uid,
+                    name: nameCompany,
+                    newComment: newComment,
+                    adressCompany: adressCompany,
+                    telephoneCompany: telephoneCompany,
+                    ratingStars: ratingStars,
+                    priority: priority
+                })
+                .then((docRef) => {
+                    console.log('Document written with ID: ', docRef.id);
+                    console.log('Guardando actividad');
+                })
+                .then(() => {
+                    const newActCard = window.createActivityCard(title, date, time, description, priority);
+                    cardsSpace.innerHTML += newActCard;
+                })
+                .catch((error) => {
+                    console.error('Error adding document: ', error);
+                    console.error('No se guarda nada');
+                });
+        };
+
+
         // GABY--------------------------
         // Initialize Cloud Firestore through Firebase
         // var db = firebase.firestore();
@@ -77,7 +108,7 @@ let Profile = {
         const createCustomElement = (element, attributes, children) => {
             let customElement = document.createElement(element);
             if (children !== undefined)
-                children.forEach(el => {
+                children.forEach((el) => {
                     if (el.nodeType) {
                         if (el.nodeType === 1 || el.nodeType === 11)
                             customElement.appendChild(el);
@@ -89,7 +120,7 @@ let Profile = {
             return customElement;
         };
         // Imprimir modal eliminar publicación
-        const printModalDelete = content => {
+        const printModalDelete = (content) => {
             // Crear contenedor interno
             const modalContentElementDelete = createCustomElement(
                     "div", {
@@ -110,12 +141,16 @@ let Profile = {
             const removeModalDelete = () =>
                 document.body.removeChild(modalContainerElementDelete);
 
-            modalContainerElementDelete.addEventListener("click", e => {
+            modalContainerElementDelete.addEventListener("click", (e) => {
                 const btnNo = document.getElementById("no-btn");
                 if (e.target === modalContainerElementDelete || e.target === btnNo)
                     removeModalDelete();
             });
+
+
         };
+
+
 
         const deleteQuestion = `<div class="elements-modal-delete">
     <p>¿Deseas eliminar<br>esta publicación?</p>
@@ -131,7 +166,7 @@ let Profile = {
         // GABY-------------------------------------------------------------------------------------------------
 
         // Imprimir modal formulario publicación
-        const printNewPost = content => {
+        const printNewPost = (content) => {
             // Crear contenedor interno
             const modalContentNewPost = createCustomElement(
                     "div", {
@@ -152,7 +187,7 @@ let Profile = {
             const removeModalNewPost = () =>
                 document.body.removeChild(modalContainerNewPost);
 
-            modalContainerNewPost.addEventListener("click", e => {
+            modalContainerNewPost.addEventListener("click", (e) => {
                 const closeBtn = document.getElementById("close-btn-form");
                 if (e.target === modalContainerNewPost || e.target === closeBtn)
                     removeModalNewPost();
@@ -166,51 +201,23 @@ let Profile = {
     <input type="radio"  style="width:20px;height:20px" name="option" value="recommend" id="input-recommend"><p style="color:#FF9E03">Recomendación</p>
     <!-- <br> -->
     <input type="radio" style="width:20px;height:20px" name="option" value="complain" id="input-complain"><p style="color:#F18E8C">Queja</p>
-    <input
-      type="text"
-      id="name-company"
-      placeholder="Nombre de la empresa o persona"
-      class="form-input"
-    />
-    <textarea
-    placeholder="Agrega un comentario"
-      name="textarea"
-      rows="3"
-      cols="33"
-      id="new-comment"
-      class=""
-    ></textarea>
+    <input type="text" id="nameCompanyPerson" placeholder="Nombre de la empresa o persona" class="form-input"/>
+    <textarea placeholder="Agrega un comentario" name="textarea" rows="3"  cols="33" id="newComment" class=""></textarea>
 
-    <input
-      type="text"
-      id="adress"
-      placeholder="Dirección"
-      class="form-input"
-    />
+    <input type="text" id="adressCompany"  placeholder="Dirección" class="form-input"/>
 
-    <input
-      type="number"
-      id="telephone"
-      placeholder="Teléfono"
-      class="form-input"
-    />
+    <input type="number" id="telephoneCompany" placeholder="Teléfono" class="form-input"/>
 
-    <input
-      type="number"
-      id="score-stars"
-      placeholder="Número de estrellas"
-      class="form-input" style="
-      width: 145px;"
-    />
+    <input type="number" id="ratingStars" placeholder="Número de estrellas" class="form-input" style="width: 145px;"/>
 
-    <button class="btn-blue" id="add-n-post">Agregar</button>
+    <button class="btn-blue" id="add-n-post" onClick="newPost()" >Agregar</button>
   </form>`;
         document.getElementById("btn-share").addEventListener("click", () => {
             printNewPost(formNewPost);
         });
 
         // Imprimir modal contacto
-        const printModalContact = content => {
+        const printModalContact = (content) => {
             // Crear contenedor interno
             const modalContentContact = createCustomElement(
                     "div", {
@@ -231,7 +238,7 @@ let Profile = {
             const removeModalContact = () =>
                 document.body.removeChild(modalContainerElementContact);
 
-            modalContainerElementContact.addEventListener("click", e => {
+            modalContainerElementContact.addEventListener("click", (e) => {
                 const btnCloseContact = document.getElementById("close-contact");
                 if (
                     e.target === modalContainerElementContact ||
@@ -255,6 +262,11 @@ let Profile = {
             .addEventListener("click", () => {
                 printModalContact(contactData);
             });
+        // const deletebutton = document.getElementById("yes-btn");
+        // deletebutton.addEventListener("click", deletePost);
+
+        // const savePost = document.getElementById("add-n-post");
+        // savePost.addEventListener("click", newPost);
     }
 };
 export default Profile;
