@@ -33,6 +33,7 @@ body {
 .home-section {
     background-color: #bdd5d7;
     height: 100vh;
+    overflow: scroll;
 }
 
 .home-elements {
@@ -84,6 +85,7 @@ body {
 .login-section {
     background-color: #ecbcb1;
     height: 100vh;
+    overflow: scroll;
 }
 
 .login-elements {
@@ -148,6 +150,7 @@ body {
 .signin-section {
     background-color: #ecbcb1;
     height: 100vh;
+    overflow: scroll;
 }
 
 .signin-elements {
@@ -219,6 +222,7 @@ body {
 .profile {
     background-color: #bdd5d7;
     height: 100vh;
+    overflow: scroll;
 }
 
 
@@ -335,8 +339,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
+    margin-bottom: 10px;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: scroll;
     padding-top: 13px;
     padding-left: 12px;
     padding-right: 12px;
@@ -413,8 +418,7 @@ body {
 }
 
 .modal-content-n-post {
-    width: 80vw;
-    height: 70vh;
+    height: 74%;
     background: #bdd5d7;
     border-radius: 20px;
     width: 90%;
@@ -463,8 +467,8 @@ body {
     width: 80vw;
     text-align: center;
     margin-left: auto;
-    margin-right: 8px;
-    margin-top: 30px;
+    margin-right: 6vw;
+    margin-top: -2px;
 }
 
 .close-btn img {
@@ -532,9 +536,10 @@ body {
 .contact-modal {
     margin: auto;
     width: 80vw;
-    height: 70vh;
+    height: 70%;
     background: #bdd5d7;
     border-radius: 20px;
+    overflow: scroll;
 }
 
 .contact-modal figure {
@@ -630,6 +635,7 @@ body {
 .timeline {
     background-color: #ecbcb1;
     height: 100vh;
+    overflow: scroll;
 }
 
 .timeline input {
@@ -768,5 +774,154 @@ body {
         width: 265px;
         margin-left: auto;
         margin-right: auto;
+    }
+    /* NAVBAR */
+    .navbar-profile {
+        height: 112px;
+    }
+    .navbar-profile a img {
+        width: 70px;
+    }
+    .navbar-profile a {
+        margin-top: 25px;
+        margin-left: 21px;
+    }
+    .close {
+        padding-top: 1%;
+        left: 76%;
+    }
+    /* PROFILE PERSON */
+    .profile-container {
+        height: 300px;
+        overflow: scroll;
+    }
+    .img-text-profile {
+        width: 50%;
+        margin-top: 9%;
+    }
+    .shape-circule {
+        width: 140px;
+        height: 140px;
+    }
+    .profile-container img {
+        width: 261px;
+        right: 49px;
+    }
+    .text-profile {
+        padding-top: 30px;
+    }
+    .text-profile h1 {
+        font-size: 26px;
+    }
+    .text-profile h2 {
+        font-size: 20px;
+    }
+    .text-profile h3 {
+        font-size: 19px;
+    }
+    /* BOTTOM NEW POST */
+    .btn-share {
+        width: 500px;
+        height: 65px;
+        font-size: 22px;
+        margin-top: 27px;
+    }
+    .container-post {
+        width: 577px;
+        height: 200px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .delete-btn {
+        left: 512px;
+        top: 7px;
+    }
+    .delete-btn img {
+        width: 28px;
+    }
+    .container-post h2 {
+        font-size: 25px;
+    }
+    .recommendation {
+        font-size: 20px;
+    }
+    .type-company {
+        font-size: 20px;
+    }
+    .company {
+        font-size: 22px;
+    }
+    .commentary {
+        font-size: 20px;
+    }
+    .contact {
+        margin-top: 27px;
+        font-size: 20px;
+    }
+    .stars {
+        left: 329px;
+        top: 28px;
+    }
+    /* NAVBAR TIMELINE */
+    .navbar-timeline {
+        height: 112px;
+    }
+    .navbar-timeline .shape-circule {
+        width: 70px;
+        height: 70px;
+        margin-right: 13px;
+    }
+    .navbar-timeline a img {
+        right: 29px;
+        width: 140px;
+    }
+    .name-timeline {
+        font-size: 18px;
+    }
+    .navbar-timeline .close {
+        left: 58%;
+        padding-top: 2%;
+    }
+    .box {
+        width: 300px;
+        padding-top: 97px;
+    }
+    .container-1 input#search {
+        width: 300px;
+    }
+    .likes-section {
+        left: 492px;
+        top: 8px;
+    }
+    .likes-section p {
+        font-size: 18px;
+    }
+    .n-like-btn {
+        width: 21px;
+        bottom: 26px;
+    }
+    .n-like-btn img {
+        width: 30px;
+    }
+    /* MODAL NEW POST */
+    .modal-content-n-post {
+        width: 318px;
+        height: 70%;
+        overflow: scroll;
+    }
+    .container-newpost {
+        width: 76%;
+        margin-top: 2px;
+    }
+    .close-btn {
+        left: 269px;
+    }
+    .modal-content-delete {
+        width: 35%;
+        overflow: scroll;
+    }
+    .contact-modal {
+        width: 285px;
+        height: 450px;
     }
 }

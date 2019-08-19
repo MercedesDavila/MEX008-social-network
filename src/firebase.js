@@ -1,20 +1,7 @@
-/* eslint-disable arrow-parens */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-var firebaseConfig = {
-    apiKey: "AIzaSyDGhmuAIAHIH_sHref9YI0QiXhAhkc1OpU",
-    authDomain: "supportme-565d4.firebaseapp.com",
-    databaseURL: "https://supportme-565d4.firebaseio.com",
-    projectId: "supportme-565d4",
-    storageBucket: "supportme-565d4.appspot.com",
-    messagingSenderId: "811873389744",
-    appId: "1:811873389744:web:7c5179900d830cfa"
-};
-//Initialize Firebase
+//Archivos que se necesitan para usar firebase
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
-let user = firebase.auth().currentUser;
-// const docref = firestore.doc("newPost/6oQBzaX3J4DdHh5GyK07");
 
 function newPost() {
     let nameCompany = document.getElementById("name-company").value;
@@ -53,27 +40,27 @@ function newPost() {
 }
 
 // Leer post
-var container = document.getElementById("postRecomendations");
-db.collection("newPost").onSnapshot((querySnapshot) => {
-    newPost.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-        newPost.innerHTML += `
-        <div class="container-post" id="postRecomendations">
-        <button class="delete-btn" id="show-modal-delete">
-          <img src="./img/delete.png" alt="eliminar" />
-        </button>
-          <h3 class="company">${doc.data().name}</h3>
-          <p class="commentary">${doc.data().comment}</p>
-          <button id="show-modal-contact" class="contact">Contacto</button>
-          <figure class="stars">
-            <img src="./img/iconos.png" alt="Calificación 4 Estrellas " />
-          </figure>
-          </div>
-          </div>
-        `;
-    });
-});
+// var container = document.getElementById("postRecomendations");
+// db.collection("newPost").onSnapshot((querySnapshot) => {
+//     newPost.innerHTML = '';
+//     querySnapshot.forEach((doc) => {
+//         console.log(`${doc.id} => ${doc.data()}`);
+//         newPost.innerHTML += `
+//         <div class="container-post" id="postRecomendations">
+//         <button class="delete-btn" id="show-modal-delete">
+//           <img src="./img/delete.png" alt="eliminar" />
+//         </button>
+//           <h3 class="company">${doc.data().name}</h3>
+//           <p class="commentary">${doc.data().comment}</p>
+//           <button id="show-modal-contact" class="contact">Contacto</button>
+//           <figure class="stars">
+//             <img src="./img/iconos.png" alt="Calificación 4 Estrellas " />
+//           </figure>
+//           </div>
+//           </div>
+//         `;
+//     });
+// });
 
 
 
@@ -156,38 +143,22 @@ const sendEmailVerification = () => {
 //*********************************************Inicio de sesión************************************************
 //Ingreso de usuario
 const loginS = () => {
-
     const eMailA = document.getElementById("email-login").value;
     const passwordA = document.getElementById("password-login").value;
 
-    firebase.auth().signInWithEmailAndPassword(eMailA, passwordA)
-        .then(() => goingProfile())
+    firebase
+        .auth()
+        .signInWithEmailAndPassword(eMailA, passwordA)
+        .then(() => goProfile())
         .catch(function(error) {
             // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            var errorCode = error.code;
+            var errorMessage = error.message;
             // ...
             console.log(errorCode);
             console.log(errorMessage);
         });
     console.log("Bienvenido a supportMe");
-};
-
-
-//Cerrar sesión 
-
-const closeSesion = () => {
-    firebase.auth().signOut().then(function() {
-            console.log('Saliendo...');
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-};
-
-//Home function
-const goingHome = () => {
-    location.hash = '/';
 };
 
 //Going to profile function
@@ -201,14 +172,18 @@ const registerGmail = () => {
     //crea una instancia del objeto del proveedor de Google
     const provider = new firebase.auth.GoogleAuthProvider();
     //Autentica a traves de una ventana emergente
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function(result) {
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
             // ...
             console.log("Hola GMail");
-        }).then(() => goingProfile())
+        })
+        .then(() => goProfile())
         .catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -245,16 +220,16 @@ const signInFacebook = () => {
         });
 };
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in.
-        goingProfile();
-    } else {
-        // No user is signed in.
-        console.log('usuario no conectado');
-        goingHome();
-    }
-});
+// firebase.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//         // User is signed in.
+//         goingProfile();
+//     } else {
+//         // No user is signed in.
+//         console.log('usuario no conectado');
+//         goingHome();
+//     }
+// });
 
 
 //Mercedes
