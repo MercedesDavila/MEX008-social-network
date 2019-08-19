@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable no-prototype-builtins */
 let Profile = {
     render: async() => {
@@ -25,10 +23,8 @@ let Profile = {
         </div>
       </div>
     </header>
-
     <button class="btn-share" id="btn-share">Compártenos tu recomendación/queja</button>
-
-    <div class="container-post" id="container">
+    <div class="container-post" id="">
           <button class="delete-btn" id="show-modal-delete">
             <img src="./img/delete.png" alt="eliminar" />
           </button>
@@ -46,56 +42,17 @@ let Profile = {
           </figure>
         </div>
         </div>
-        
-      </section>
+
+    
+
+      
       `;
         return view;
     },
     after_render: async() => {
 
-
-        const savingPost = (title, date, time, description, priority) => {
-            db.collection('newPost').add({
-                    userID: user.uid,
-                    name: nameCompany,
-                    newComment: newComment,
-                    adressCompany: adressCompany,
-                    telephoneCompany: telephoneCompany,
-                    ratingStars: ratingStars,
-                    priority: priority
-                })
-                .then((docRef) => {
-                    console.log('Document written with ID: ', docRef.id);
-                    console.log('Guardando actividad');
-                })
-                .then(() => {
-                    const newActCard = window.createActivityCard(title, date, time, description, priority);
-                    cardsSpace.innerHTML += newActCard;
-                })
-                .catch((error) => {
-                    console.error('Error adding document: ', error);
-                    console.error('No se guarda nada');
-                });
-        };
-
-
-        // GABY--------------------------
-        // Initialize Cloud Firestore through Firebase
-        // var db = firebase.firestore();
-        // db.collection("users")
-        //   .add({
-        //     first: "Nadia",
-        //     last: "Love",
-        //     born: 1813
-        //   })
-        //   .then(function(docRef) {
-        //     console.log("Document written with ID: ", docRef.id);
-        //   })
-        //   .catch(function(error) {
-        //     console.error("Error adding document: ", error);
-        //   });
-        // GABY--------------------------
-
+        // const deletePost = document.getElementById("yes-btn");
+        // deletePost.addEventListener("click", deletePost);
         // MODAL
         // Añadir un objeto de atributos a un elemento
         const addAttributes = (element, attrObj) => {
@@ -146,11 +103,7 @@ let Profile = {
                 if (e.target === modalContainerElementDelete || e.target === btnNo)
                     removeModalDelete();
             });
-
-
         };
-
-
 
         const deleteQuestion = `<div class="elements-modal-delete">
     <p>¿Deseas eliminar<br>esta publicación?</p>
@@ -162,8 +115,6 @@ let Profile = {
             .addEventListener("click", () => {
                 printModalDelete(deleteQuestion);
             });
-
-        // GABY-------------------------------------------------------------------------------------------------
 
         // Imprimir modal formulario publicación
         const printNewPost = (content) => {
@@ -201,17 +152,49 @@ let Profile = {
     <input type="radio"  style="width:20px;height:20px" name="option" value="recommend" id="input-recommend"><p style="color:#FF9E03">Recomendación</p>
     <!-- <br> -->
     <input type="radio" style="width:20px;height:20px" name="option" value="complain" id="input-complain"><p style="color:#F18E8C">Queja</p>
-    <input type="text" id="nameCompanyPerson" placeholder="Nombre de la empresa o persona" class="form-input"/>
-    <textarea placeholder="Agrega un comentario" name="textarea" rows="3"  cols="33" id="newComment" class=""></textarea>
-
-    <input type="text" id="adressCompany"  placeholder="Dirección" class="form-input"/>
-
-    <input type="number" id="telephoneCompany" placeholder="Teléfono" class="form-input"/>
-
-    <input type="number" id="ratingStars" placeholder="Número de estrellas" class="form-input" style="width: 145px;"/>
-
-    <button class="btn-blue" id="add-n-post" onClick="newPost()" >Agregar</button>
-  </form>`;
+    <input
+      type="text"
+      id="name-company"
+      placeholder="Nombre de la empresa o persona"
+      class="form-input"
+    />
+    <textarea
+    placeholder="Agrega un comentario"
+      name="textarea"
+      rows="3"
+      cols="33"
+      id="new-comment"
+      class=""
+    ></textarea>
+    <input
+      type="text"
+      id="adress"
+      placeholder="Dirección"
+      class="form-input"
+    />
+    <input
+      type="number"
+      id="telephone"
+      placeholder="Teléfono"
+      class="form-input"
+    />
+    
+    <input
+      type="number"
+      id="mobile"
+      placeholder="Móvil/WhatsApp"
+      class="form-input"
+    />
+    <input
+      type="number"
+      id="score-stars"
+      placeholder="Número de estrellas"
+      class="form-input" style="
+      width: 145px;"
+    />
+    <button type = "button" class="btn-blue" id="add-n-post" onclick="newPost()">Agregar</button>
+</form>
+`;
         document.getElementById("btn-share").addEventListener("click", () => {
             printNewPost(formNewPost);
         });
@@ -262,11 +245,6 @@ let Profile = {
             .addEventListener("click", () => {
                 printModalContact(contactData);
             });
-        // const deletebutton = document.getElementById("yes-btn");
-        // deletebutton.addEventListener("click", deletePost);
-
-        // const savePost = document.getElementById("add-n-post");
-        // savePost.addEventListener("click", newPost);
     }
 };
 export default Profile;

@@ -2,7 +2,7 @@
 let Timeline = {
     render: async() => {
         let view = /*html*/ `
-      <section id="" class="timeline">
+      <section id="postTimeline" class="timeline">
       <div class="box">
               <div class="container-1">
                   <span class="icon"><img src="./img/search-02-02.svg"></span>
@@ -35,9 +35,9 @@ let Timeline = {
             </div>
             </div>
 
-            <div class="container-post" id="post">
+            <div class="container-post" id="post2">
             <div class="likes-section">
-             <p id="number-likes">27</p>
+             <p id="number-likes">32</p>
                <button class="n-like-btn" id="n-like">
                    <img src="./img/like-04.png" alt="dar me gusta" />
                  </button>
@@ -67,8 +67,8 @@ let Timeline = {
     },
     after_render: async() => {
 
-        const likebutton = document.getElementById("w-like");
-        likebutton.addEventListener("click", likes);
+        // const likebutton = document.getElementById("w-like");
+        // likebutton.addEventListener("click", likes);
     }
 };
 export default Timeline;

@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 var firebaseConfig = {
@@ -12,41 +13,67 @@ var firebaseConfig = {
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
-// let user = firebase.auth().currentUser;
+let user = firebase.auth().currentUser;
 // const docref = firestore.doc("newPost/6oQBzaX3J4DdHh5GyK07");
 
 function newPost() {
-    let nameCompany = document.getElementById("nameCompanyPerson").value;
-    let comment = document.getElementById("newComment").value;
-    let adress = document.getElementById("adressCompany").value;
-    let telephone = document.getElementById("telephoneCompany").value;
-    let stars = document.getElementById("ratingStars").value;
+    let nameCompany = document.getElementById("name-company").value;
+    let comment = document.getElementById("new-comment").value;
+    let adress = document.getElementById("adress").value;
+    let telephone = document.getElementById("telephone").value;
+    let mobile = document.getElementById("mobile").value;
+    let stars = document.getElementById("score-stars").value;
     let typeRecommend = document.getElementById("input-recommend").value;
 
     db.collection("newPost").add({
             name: nameCompany,
             comment: comment,
             telephone: telephone,
+            mobile: mobile,
             adress: adress,
             stars: stars,
             type: typeRecommend
 
         })
         .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            document.getElementById("nameCompanyPerson").value = '';
-            document.getElementById("newComment").value = '';
-            document.getElementById("adressCompany").value = '';
-            document.getElementById("telephoneCompany").value = '';
-            document.getElementById("ratingStars").value = '';
             document.getElementById("input-recommend").value = '';
+            document.getElementById("name-company").value = '';
+            document.getElementById("new-comment").value = '';
+            document.getElementById("adress").value = '';
+            document.getElementById("telephone").value = '';
+            document.getElementById("mobile").value = '';
+            document.getElementById("score-stars").value = '';
 
+
+            console.log("Document written with ID: ", docRef.id);
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
         });
 }
 
+// Leer post
+var container = document.getElementById("postRecomendations");
+db.collection("newPost").onSnapshot((querySnapshot) => {
+    newPost.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+        newPost.innerHTML += `
+        <div class="container-post" id="postRecomendations">
+        <button class="delete-btn" id="show-modal-delete">
+          <img src="./img/delete.png" alt="eliminar" />
+        </button>
+          <h3 class="company">${doc.data().name}</h3>
+          <p class="commentary">${doc.data().comment}</p>
+          <button id="show-modal-contact" class="contact">Contacto</button>
+          <figure class="stars">
+            <img src="./img/iconos.png" alt="Calificación 4 Estrellas " />
+          </figure>
+          </div>
+          </div>
+        `;
+    });
+});
 
 
 
@@ -150,8 +177,7 @@ const loginS = () => {
 //Cerrar sesión 
 
 const closeSesion = () => {
-    firebase.auth().signOut()
-        .then(function() {
+    firebase.auth().signOut().then(function() {
             console.log('Saliendo...');
         })
         .catch(function(error) {
@@ -219,70 +245,21 @@ const signInFacebook = () => {
         });
 };
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        goingProfile();
+    } else {
+        // No user is signed in.
+        console.log('usuario no conectado');
+        goingHome();
+    }
+});
 
 
-//Saving user data
+//Mercedes
 
-const savingUserData = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            db.collection("userDate").add({
-                    name: user.displayName,
-                    email: user.email,
-                    photo: user.photoURL,
-                    userID: user.uid
-
-                })
-                .then((docRef) => {
-                    console.log("Document written with ID: ", docRef.id);
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
-        }
-    });
-};
-
-
-
-// const goingLogin = () => {
-//     location.hash = '/';
-// };
-
-// firebase.auth().onAuthStateChanged(function(user) {
-//     if (user) {
-//         // User is signed in.
-//         goingHome();
-//     } else {
-//         // No user is signed in.
-//         console.log('usuario no conectado');
-//         goingLogin();
-//     }
-// });
-
-//Funcion para postear
-const post = () => {
-    let posts = document.querySelector('.post').value;
-    let user = firebase.auth().currentUser;
-    let like = 0;
-    db.collection('newPost')
-        .add({
-            displayName: user.displayName,
-            displaytelephoneCompany: user.telephoneCompany,
-            like: like,
-            displayNewComment: user.newComment
-        })
-        .then(function(docRef) {
-            console.log('Document written with ID: ', docRef.id);
-            document.querySelector('.post').value = '';
-        })
-        .catch(function(error) {
-            console.error('Error adding document: ', error);
-        });
-};
-
-
-// Likes
+//Likes 
 
 // const likes = (id, likes) => {
 //     likes++;
@@ -310,12 +287,14 @@ const post = () => {
 // };
 // console.log(likes());
 
-// // //DeletePost
+// //Delete post
 
-// const deletePost = () => {
+// const deletePost = id => {
 //     let confirmDelete = confirm('Seguro que quieres eliminar este post?');
 //     if (confirmDelete == true) {
-//         db.collection('newPost').doc(id).delete()
+//         db.collection('table')
+//             .doc(id)
+//             .delete()
 //             .then(function() {
 //                 console.log('Document successfully deleted!');
 //             })
@@ -326,4 +305,40 @@ const post = () => {
 // };
 
 
-// window.goingLogin = goingLogin;
+// GABY--------------------------
+// // Initialize Cloud Firestore through Firebase
+// // const saveBtn = document.getElementById("add-n-post");
+
+// var db = firebase.firestore();
+
+// // const savePost = () => {
+
+// function save() {
+//   //     let recommendOption = document.getElementById("input-recommend");
+//   // let complaindOption = document.getElementById("input-complain");
+//   var nameCompanyPerson = document.getElementById("name-company").value;
+//   var newComment = document.getElementById("new-comment").value;
+//   var adressCompany = document.getElementById("adress").value;
+//   var telephoneCompany = document.getElementById("adress").value;
+//   var mobileTelephone = document.getElementById("mobile").value;
+//   var ratingStars = document.getElementById("score-stars").value;
+//   db.collection("newPost")
+//     .add({
+//       // type: "recommendOption || complaindOption",
+//       name: nameCompanyPerson,
+//       comment: newComment,
+//       adress: adressCompany,
+//       telphone: telephoneCompany,
+//       mobile: mobileTelephone,
+//       stars: ratingStars
+//     })
+//     .then(function(docRef) {
+//       console.log("Document written with ID: ", docRef.id);
+//     })
+//     .catch(function(error) {
+//       console.error("Error adding document: ", error);
+//     });
+// }
+// //   saveBtn.addEventListener("click", savePost);
+// // };
+// GABY--------------------------

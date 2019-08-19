@@ -52,6 +52,13 @@ const router = async() => {
         (request.verb ? "/" + request.verb : "");
 
     // Proveé una navbar diferente para sección PROFILE y Timeline y la quita en las otras secciones
+
+    // Obtenga la página de nuestro hash de rutas compatibles.
+    let page = routes[parsedURL] ? routes[parsedURL] : Error404;
+    main.innerHTML = await page.render();
+    await page.after_render();
+
+
     if (parsedURL === "/") {
         header.style.display = "none";
     } else if (parsedURL === "/register") {
@@ -65,20 +72,15 @@ const router = async() => {
         header.innerHTML = await navbarTimeline.render();
         header.style.display = "block";
     }
-    // Obtenga la página de nuestro hash de rutas compatibles.
-    let page = routes[parsedURL] ? routes[parsedURL] : Error404;
-    main.innerHTML = await page.render();
-    await page.after_render();
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in.
-        } else {
-            // No user is signed in.
-            console.log('usuario no conectado');
-            window.goingLogin();
-        }
-    });
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //         // User is signed in.
+    //     } else {
+    //         // No user is signed in.
+    //         console.log('usuario no conectado');
+    //         window.goingLogin();
+    //     }
+    // });
 
 };
 

@@ -9,7 +9,7 @@ let Login = {
         <button id="btn-gmail" class="sn-btn google-btn"><img src="./img/gmail-07.png" alt="Iniciar sesión con Gmail"> Iniciar sesión con Gmail</button>
         <button id="btn-facebook" class="sn-btn facebook-btn" ><img src="./img/icon-05.png" alt="Iniciar sesión con Facebook"> Iniciar sesión con Facebook</button>
         
-        <form name="login" id="authentication-form">
+        <form name="login" id="authentication-form" class="form-login">
         <input
             type="email"
             id="email-login"

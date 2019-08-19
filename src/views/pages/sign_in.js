@@ -7,7 +7,7 @@ let Signin = {
     <a href=""><img class="return" src="./img/icon-06.png" alt="Ir atrás"></a>
     <div class="signin-elements">
         <h2>RegistrarMe</h2>
-      <form id="form-sign">
+      <form id="form-sign" class="form-signin-st">
       <input type="text" name="name" placeholder="Nombre" id="register-name" class="register-name">
       <input type="text" name="lastName" placeholder="Apellido" id="register-lastname" class="lastname">
       <input type="email" name="email" placeholder="e-mail" id="register-email" class="register-email">
@@ -27,14 +27,14 @@ let Signin = {
     },
     after_render: async() => {
         const formOne = document.getElementById("form-sign");
-        // const userNameInput = document.getElementById("register-name");
-        // const lastNameInput = document.getElementById("register-lastname");
-        // const emailInput = document.getElementById('register-email');
-        // const passwordInput = document.getElementById('register-password');
-        // const passwordConfirmInput = document.getElementById('register-cp');
-        // const stateInput = document.getElementById("register-select");
-        // const cityInput = document.getElementById("register-city");
-        // const uhmInput = document.getElementById("register-uhm");
+        const userNameInput = document.getElementById("register-name");
+        const lastNameInput = document.getElementById("register-lastname");
+        const emailInput = document.getElementById('register-email');
+        const passwordInput = document.getElementById('register-password');
+        const passwordConfirmInput = document.getElementById('register-cp');
+        const stateInput = document.getElementById("register-select");
+        const cityInput = document.getElementById("register-city");
+        const uhmInput = document.getElementById("register-uhm");
 
         // const name = formOne.name.value;
         // const lastName = formOne.lastName.value;
@@ -77,7 +77,7 @@ let Signin = {
             "Zacatecas"
         ];
         const boton = document.getElementById("button-register");
-        boton.addEventListener("click", registerUser);
+        // boton.addEventListener("click", registerUser);
         //For que rellena el select con los nombres de los estados.
         for (let index = 0; index < statesList.length; index++) {
             select.options[select.options.length] = new Option(
@@ -89,65 +89,76 @@ let Signin = {
         // //Creando un objeto con los datos del formulario que ingreso el usuario
 
         // //Función constructora para el objeto userDate, donde se alamacenaran los datoa del usuario.
-        // function userDate(firstName, lastName, email, userName, state, city, uhm) {
-        //     this.firstName = firstName;
-        //     this.lastName = lastName;
-        //     this.email = email;
-        //     this.userName = userName;
-        //     this.state = state;
-        //     this.city = city;
-        //     this.uhm = uhm;
-        // }
+        function userDate(firstName, lastName, email, userName, state, city, uhm) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.userName = userName;
+            this.state = state;
+            this.city = city;
+            this.uhm = uhm;
+        }
 
-        // const obtainFirstName = () => {
-        //     const name = formOne.name.value;
-        //     return name;
-        // };
-        // const obtainLastName = () => {
-        //     const lastName = formOne.lastName.value;
-        //     return lastName;
-        // };
-        // const obtainEmail = () => {
-        //     const email = formOne.email.value;
-        //     return email;
-        // };
-        // const obtainUserName = () => {
-        //     const userName = formOne.username.value;
-        //     return userName;
-        // };
+        const obtainFirstName = () => {
+            const name = formOne.name.value;
+            return name;
+        };
+        const obtainLastName = () => {
+            const lastName = formOne.lastName.value;
+            return lastName;
+        };
+        const obtainEmail = () => {
+            const email = formOne.email.value;
+            return email;
+        };
+        const obtainUserName = () => {
+            const userName = formOne.username.value;
+            return userName;
+        };
 
-        // const obtainState = () => {
-        //     const state = formOne.state.value;
-        //     return state;
-        // };
-        // const obtainCity = () => {
-        //     const city = formOne.city.value;
-        //     return city;
-        // };
-        // const obtainUhm = () => {
-        //     const uhm = formOne.uhm.value;
-        //     return uhm;
-        // };
+        const obtainState = () => {
+            const state = formOne.state.value;
+            return state;
+        };
+        const obtainCity = () => {
+            const city = formOne.city.value;
+            return city;
+        };
+        const obtainUhm = () => {
+            const uhm = formOne.uhm.value;
+            return uhm;
+        };
 
-        // const userCreate = () => {
-        //     const userAdd = new userDate(
-        //         obtainFirstName(),
-        //         obtainLastName(),
-        //         obtainEmail(),
-        //         obtainUserName(),
-        //         obtainCity(),
-        //         obtainState(),
-        //         obtainUhm()
-        //     );
-        //     console.log(userAdd);
-        // };
+        const userCreate = () => {
+            const userAdd = new userDate(
+                obtainFirstName(),
+                obtainLastName(),
+                obtainEmail(),
+                obtainUserName(),
+                obtainCity(),
+                obtainState(),
+                obtainUhm()
+            );
+            console.log(userAdd);
+            db.collection("userDate").add({
+                username: userNameInput,
+                firts: userNameInput,
+                lastName: lastNameInput,
+                email: emailInput,
+                state: stateInput,
+                uhm: uhmInput,
+                city: cityInput
 
-        // function eventoClick() {
-        //     userCreate();
-        //     registerUser();
-        // }
+            });
 
-        // boton.addEventListener("click", eventoClick);
+        };
+
+        function eventoClick() {
+            userCreate();
+            registerUser();
+        }
+
+        boton.addEventListener("click", eventoClick);
     }
 };
 export default Signin;
